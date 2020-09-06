@@ -9,9 +9,22 @@
 .pointer {
     cursor: pointer;
 }
+#player {
+    height: 18rem !important;
+}
 
 @media (min-width: 576px) {
     .modal-dialog {
         max-width: 40%;
+    }
+}
+@media (max-width: 768px) {
+    .audio-div {
+       order: -1;
+    }
+}
+@media (min-width: 992px) {
+    #player {
+        width: 75% !important;
     }
 }

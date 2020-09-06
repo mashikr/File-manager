@@ -7,4 +7,13 @@ $(document).ready(function(){
         $('.modal-title').text($(this).attr('alt'));
     });
 
+    $('.pointer video').click(function() {
+        var src = $(this).find('source').attr('src');
+
+        var markup = `<video class="w-100" autoplay controls>
+                        <source src="${src}" type="video/mp4">
+                    </video>`;
+        $('#player').html('').html(markup);
+    });
+
 });

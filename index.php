@@ -57,8 +57,8 @@ if (isset($_POST['submit'])) {
   <hr>
     <div class="display-3 d-flex mt-5">
     <a class="d-flex flex-column mr-4" href="image.php"><i class="fas fa-folder-open  text-warning"></i> <span class="lead">Images</span></a>
-    <a class="d-flex flex-column mr-4" href="audio.php"><i class="fas fa-folder-open  text-warning"></i> <span class="lead">Audio</span></a>
-    <a class="d-flex flex-column" href="video.php"><i class="fas fa-folder-open  text-warning"></i><span class="lead">Video</span></a>
+    <a class="d-flex flex-column mr-4" href="audio.php"><i class="fas fa-folder-open  text-warning"></i> <span class="lead">Audios</span></a>
+    <a class="d-flex flex-column" href="video.php"><i class="fas fa-folder-open  text-warning"></i><span class="lead">Videos</span></a>
     </div>
 </div>
 <?php require_once 'includes/footer.php' ?>
