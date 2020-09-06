@@ -1,0 +1,17 @@
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 1.5rem;
+}
+.word-wrap {
+    word-wrap: break-word;
+}
+.pointer {
+    cursor: pointer;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 40%;
+    }
+}

@@ -1,31 +1,35 @@
 <?php require_once 'includes/db.php' ?>
 <?php require_once 'includes/header.php' ?>
 <?php 
-
+$error = '';
 if (isset($_POST['submit'])) {
   $file_name = $_FILES['file']['name'];
   $file = $_FILES['file']['tmp_name'];
   $type = explode("/",$_FILES['file']['type']);
   $size = $_FILES['file']['size'];
 
-  if ($size/1048576 > 1) {
-    $size = round($size/1048576, 2) . "MB";
-  } else {
-    $size = round($size/1024, 2) . "KB";
-  }
-
-  if (move_uploaded_file($file, "$type[0]/$file_name")) {
-    $sql = "INSERT INTO `files`(`name`, `type`, `size`) VALUES (:name,:type,:size)";
-    $stmt = $db->prepare($sql);
-
-    $stmt->bindParam(':name', $file_name, PDO::PARAM_STR);
-    $stmt->bindParam(':type', $type[0], PDO::PARAM_STR);
-    $stmt->bindParam(':size', $size, PDO::PARAM_STR);
-    if ($stmt->execute()) {
-      header('Location: index.php');
+  if ($type[0] == 'image' || $type[0] == 'audio' || $type[0] == 'video') {
+    if ($size/1048576 > 1) {
+      $size = round($size/1048576, 2) . "MB";
     } else {
-      echo "Something went wrong!";        
+      $size = round($size/1024, 2) . "KB";
     }
+  
+    if (move_uploaded_file($file, "$type[0]/$file_name")) {
+      $sql = "INSERT INTO `files`(`name`, `type`, `size`) VALUES (:name,:type,:size)";
+      $stmt = $db->prepare($sql);
+  
+      $stmt->bindParam(':name', $file_name, PDO::PARAM_STR);
+      $stmt->bindParam(':type', $type[0], PDO::PARAM_STR);
+      $stmt->bindParam(':size', $size, PDO::PARAM_STR);
+      if ($stmt->execute()) {
+        header('Location: index.php');
+      } else {
+        $error =  "Something went wrong!";        
+      }
+    }
+  } else {
+    $error =  "Invalid file format! Please upload image/audio/video";
   }
   
 }
@@ -46,6 +50,7 @@ if (isset($_POST['submit'])) {
           <button class="btn btn-outline-secondary px-4" type="submit" id="inputGroupFileAddon04" name="submit">Upload</button>
         </div>
       </div>
+      <p class='text-danger'><?php echo $error; ?></p>
     </form>
   </div>
 
