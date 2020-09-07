@@ -16,4 +16,14 @@ $(document).ready(function(){
         $('#player').html('').html(markup);
     });
 
+    $('.pointer .audio-name').click(function() {
+        var src = $(this).text();
+
+        var markup = `<audio controls autoplay loop>
+                        <source src="audio/${src}" 
+                            type="audio/mpeg">
+                    </audio>`;
+        $('#audio-player').html('').html(markup);
+    });
+
 });
